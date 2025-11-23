@@ -8,19 +8,19 @@ type ModelName = string | number;
 type ItemId = string | number;
 
 export const deleteItem = (model: ModelName, id: ItemId): Promise<AxiosResponse> => {
-  return instance.delete(`/api2/delete/${model}/${id}`);
+  return instance.delete(`/delete/${model}/${id}`);
 };
 
 export const activateItem = (model: ModelName, id: ItemId): Promise<AxiosResponse> => {
-  return instance.put(`/api2/active/${model}/${id}`);
+  return instance.put(`/active/${model}/${id}`);
 };
 
 export const deactivateItem = (model: ModelName, id: ItemId): Promise<AxiosResponse> => {
-  return instance.put(`/api2/inactive/${model}/${id}`);
+  return instance.put(`/inactive/${model}/${id}`);
 };
 
 export const signInUser = (data: { email: string; password: string; rememberMe?: boolean }): Promise<AxiosResponse> => {
-  return instance.post("/api2/auth/login", JSON.stringify(data), {
+  return instance.post("/auth/login", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -31,10 +31,10 @@ export const signInUser = (data: { email: string; password: string; rememberMe?:
 
 export const getAllDepartments = (): Promise<
   AxiosResponse<ApiResponse<Department[]>>
-> => instance.get("/api2/department/department-list");
+> => instance.get("/department/department-list");
 
 export const addDepartment = (data: { department_name: string }): Promise<AxiosResponse> => {
-  return instance.post("/api2/department/add-department", JSON.stringify(data), {
+  return instance.post("/department/add-department", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -42,19 +42,19 @@ export const addDepartment = (data: { department_name: string }): Promise<AxiosR
 };
 
 export const getDepartmentById = (id: number): Promise<AxiosResponse<ApiResponse<Department>>> => {
-  return instance.get(`/api2/department/get-department/${id}`); }
+  return instance.get(`/department/get-department/${id}`); }
 
 
   export const submitDepartment = (id: number | undefined, data: FormData): Promise<AxiosResponse> => {
     if (id) {
-      return instance.put(`/api2/department/add-department/${id}`, data,{
+      return instance.put(`/department/add-department/${id}`, data,{
         headers: {
           "Content-Type": "application/json",
         },
         method: "PUT",
       });
     }
-    return instance.post("/api2/department/add-department", data,{
+    return instance.post("/department/add-department", data,{
       headers: {
         "Content-Type": "application/json",
       },
@@ -63,7 +63,7 @@ export const getDepartmentById = (id: number): Promise<AxiosResponse<ApiResponse
   };
 
   export const  uniqueDepartment = (department_name: string, currentId: number | undefined): Promise<AxiosResponse> => {
-    return instance.get(`/api2/department/check-unique/`, {
+    return instance.get(`/department/check-unique/`, {
       params: { department_name, currentId },
     });
   };
@@ -72,10 +72,10 @@ export const getDepartmentById = (id: number): Promise<AxiosResponse<ApiResponse
   
 export const getAllCategorys = (): Promise<
   AxiosResponse<ApiResponse<Category[]>>
-> => instance.get("/api2/category/category-list");
+> => instance.get("/category/category-list");
 
 export const addCategory = (data: { category_name: string }): Promise<AxiosResponse> => {
-  return instance.post("/api2/category/add-category", JSON.stringify(data), {
+  return instance.post("/category/add-category", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -83,19 +83,19 @@ export const addCategory = (data: { category_name: string }): Promise<AxiosRespo
 };
 
 export const getCategoryById = (id: number): Promise<AxiosResponse<ApiResponse<Category>>> => {
-  return instance.get(`/api2/category/get-category/${id}`); }
+  return instance.get(`/category/get-category/${id}`); }
 
 
   export const submitCategory = (id: number | undefined, data: FormData): Promise<AxiosResponse> => {
     if (id) {
-      return instance.put(`/api2/category/add-category/${id}`, data,{
+      return instance.put(`/category/add-category/${id}`, data,{
         headers: {
           "Content-Type": "application/json",
         },
         method: "PUT",
       });
     }
-    return instance.post("/api2/category/add-category", data,{
+    return instance.post("/category/add-category", data,{
       headers: {
         "Content-Type": "application/json",
       },
@@ -108,7 +108,7 @@ export const getCategoryById = (id: number): Promise<AxiosResponse<ApiResponse<C
     if (currentId !== undefined) {
       (params as any).currentId = Number(currentId);
     }
-    return instance.get(`/api2/category/check-unique/`, {
+    return instance.get(`/category/check-unique/`, {
       params,
       headers: {
         "Content-Type": "application/json",
@@ -122,10 +122,10 @@ export const getCategoryById = (id: number): Promise<AxiosResponse<ApiResponse<C
   
 export const getAllMagazines = (): Promise<
   AxiosResponse<ApiResponse<Magazine[]>>
-> => instance.get("/api2/magazine/magazine-list");
+> => instance.get("/magazine/magazine-list");
 
 export const addMagazine = (data: FormData): Promise<AxiosResponse> => {
-  return instance.post("/api2/magazine/add-magazine", JSON.stringify(data), {
+  return instance.post("/magazine/add-magazine", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -133,19 +133,19 @@ export const addMagazine = (data: FormData): Promise<AxiosResponse> => {
 };
 
 export const getMagazineById = (id: number): Promise<AxiosResponse<ApiResponse<Magazine>>> => {
-  return instance.get(`/api2/magazine/get-magazine/${id}`); }
+  return instance.get(`/magazine/get-magazine/${id}`); }
 
 
   export const submitMagazine = (id: number | undefined, data: FormData): Promise<AxiosResponse> => {
     if (id) {
-      return instance.put(`/api2/magazine/add-magazine/${id}`, data,{
+      return instance.put(`/magazine/add-magazine/${id}`, data,{
         headers: {
           "Content-Type": "multipart/form-data",
         },
         method: "PUT",
       });
     }
-    return instance.post("/api2/magazine/add-magazine", data,{
+    return instance.post("/magazine/add-magazine", data,{
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -154,7 +154,7 @@ export const getMagazineById = (id: number): Promise<AxiosResponse<ApiResponse<M
   };
 
   export const  uniqueMagazine = (magazine_name: string, currentId: number | undefined): Promise<AxiosResponse> => {
-    return instance.get(`/api2/magazine/check-unique/`, {
+    return instance.get(`/magazine/check-unique/`, {
       params: { magazine_name, currentId },
     });
   };
@@ -164,10 +164,10 @@ export const getMagazineById = (id: number): Promise<AxiosResponse<ApiResponse<M
   
 export const getAllPodcasts = (): Promise<
   AxiosResponse<ApiResponse<Podcast[]>>
-> => instance.get("/api2/podcast/podcast-list");
+> => instance.get("/podcast/podcast-list");
 
 export const addPodcast = (data: FormData): Promise<AxiosResponse> => {
-  return instance.post("/api2/podcast/add-podcast", JSON.stringify(data), {
+  return instance.post("/podcast/add-podcast", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -175,19 +175,19 @@ export const addPodcast = (data: FormData): Promise<AxiosResponse> => {
 };
 
 export const getPodcastById = (id: number): Promise<AxiosResponse<ApiResponse<Podcast>>> => {
-  return instance.get(`/api2/podcast/get-podcast/${id}`); }
+  return instance.get(`/podcast/get-podcast/${id}`); }
 
 
   export const submitPodcast = (id: number | undefined, data: FormData): Promise<AxiosResponse> => {
     if (id) {
-      return instance.put(`/api2/podcast/add-podcast/${id}`, data,{
+      return instance.put(`/podcast/add-podcast/${id}`, data,{
         headers: {
           "Content-Type": "multipart/form-data",
         },
         method: "PUT",
       });
     }
-    return instance.post("/api2/podcast/add-podcast", data,{
+    return instance.post("/podcast/add-podcast", data,{
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -196,7 +196,7 @@ export const getPodcastById = (id: number): Promise<AxiosResponse<ApiResponse<Po
   };
 
   export const  uniquePodcast = (podcast_name: string, currentId: number | undefined): Promise<AxiosResponse> => {
-    return instance.get(`/api2/podcast/check-unique/`, {
+    return instance.get(`/podcast/check-unique/`, {
       params: { podcast_name, currentId },
     });
   };
@@ -206,10 +206,10 @@ export const getPodcastById = (id: number): Promise<AxiosResponse<ApiResponse<Po
   
 export const getAllUsers = (): Promise<
   AxiosResponse<ApiResponse<User[]>>
-> => instance.get("/api2/user/user-list");
+> => instance.get("/user/user-list");
 
 export const addUser = (data: FormData): Promise<AxiosResponse> => {
-  return instance.post("/api2/user/add-user", JSON.stringify(data), {
+  return instance.post("/user/add-user", JSON.stringify(data), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -217,19 +217,19 @@ export const addUser = (data: FormData): Promise<AxiosResponse> => {
 };
 
 export const getUserById = (id: number): Promise<AxiosResponse<ApiResponse<User>>> => {
-  return instance.get(`/api2/user/get-user/${id}`); }
+  return instance.get(`/user/get-user/${id}`); }
 
 
   export const submitUser = (id: number | undefined, data: FormData): Promise<AxiosResponse> => {
     if (id) {
-      return instance.put(`/api2/user/add-user/${id}`, data,{
+      return instance.put(`/user/add-user/${id}`, data,{
         headers: {
           "Content-Type": "multipart/form-data",
         },
         method: "PUT",
       });
     }
-    return instance.post("/api2/user/add-user", data,{
+    return instance.post("/user/add-user", data,{
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -238,14 +238,14 @@ export const getUserById = (id: number): Promise<AxiosResponse<ApiResponse<User>
   };
 
   export const  uniqueUser = (full_name: string, currentId: number | undefined): Promise<AxiosResponse> => {
-    return instance.get(`/api2/user/check-unique/`, {
+    return instance.get(`/user/check-unique/`, {
       params: { full_name, currentId },
     });
   };
 
   export const getUserByEmail = async (email: string): Promise<User | null> => {
     try {
-      const response = await instance.get<ApiResponse<User>>(`/api2/user/get-by-email`, {
+      const response = await instance.get<ApiResponse<User>>(`/user/get-by-email`, {
         params: { email },
       });
       return response.data.data;

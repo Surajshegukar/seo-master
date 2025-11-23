@@ -11,15 +11,15 @@ import { useTableActions } from "@/src/hooks/admin/useTableAction";
 
 const UserTable: React.FC = () => {
   const [filteredUrl, setFilteredUrl] = useState(
-    "/api/user/ajax/user-list"
+    "/auther/ajax/auther-list"
   );
 
   const { toggleStatus, editItem, deleteItemAction, refresh } =
-    useTableActions("ser");
+    useTableActions("auther");
     
 
   useEffect(() => {
-    setFilteredUrl("/api/user/ajax/user-list");
+    setFilteredUrl("/auther/ajax/auther-list");
   }, []);
 
   const columns: TableColumn<UserRow>[] = [

@@ -6,14 +6,15 @@ const categoryRoutes = require("../routes/category_routes");
 const magazineRoutes = require("../routes/magazine_routes");
 const podcastRoutes = require("../routes/podcast_routes");
 const autherRoutes = require("../routes/auther_routes");
-
+const authRoutes = require("../routes/auth_routes");
 const router = express.Router();
 
-router.use("/api2", commonRoutes);
-router.use("/api2/department", departmentRoutes);
-router.use("/api2/category", categoryRoutes);
-router.use("/api2/magazine", magazineRoutes);
-router.use("/api2/podcast", podcastRoutes);
-router.use("/api2/auther", autherRoutes);
+router.use("/", commonRoutes);
+router.use("/", authRoutes);
+router.use("/department", departmentRoutes);
+router.use("/category", categoryRoutes);
+router.use("/magazine", magazineRoutes);
+router.use("/podcast", podcastRoutes);
+router.use("/auther", autherRoutes);
 
 module.exports = router;

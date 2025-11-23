@@ -12,8 +12,6 @@ const dev = process.env.NODE_ENV !== "production";
 const nextAppPath = path.join(__dirname, "../website");
 const routes = require("./config/routes.js");
 
-const authRoutes = require("./routes/auth_routes.js");
-
 
 let next;
 
@@ -32,10 +30,10 @@ if (!dev) {
 
   app.prepare().then(() => {
     const server = express();
-    server.use(express.json());
-    server.use(express.urlencoded({ extended: true }));
-    server.use(cookieParser());
-    server.use(
+    server.use("/api2", express.json());
+    server.use("/api2", express.urlencoded({ extended: true }));
+    server.use("/api2", cookieParser());
+    server.use("/api2", 
       cors({
         origin: [process.env.NEXT_PUBLIC_APP_URL],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -44,19 +42,16 @@ if (!dev) {
     );
 
     // Prisma middleware
-    server.use((req, res, next) => {
+    server.use("/api2",(req, res, next) => {
       req.prisma = prisma;
       next();
     });
-    server.use(authRoutes);
-    // Example API
-    server.get("/api2/hello", (req, res) => {
-      res.json({ message: "Hello from Express API!" });
+    server.use("/api2",routes);
+    server.use((req, res, next) => {  
+      // Otherwise, let Next.js handle it
+      return handle(req, res);
     });
-    // API routes
-    server.use(routes);
 
-    server.all(/^(?!\/api2).*$/, (req, res) => handle(req, res));
 
     const PORT = process.env.PORT || 3000;
     server.listen(PORT, () => {
@@ -85,8 +80,7 @@ if (!dev) {
     next();
   });
   // Use the routes
-  app.use(authRoutes);
-  app.use("/", routes);
+  app.use("/api2", routes);
 
   app.get("/", (req, res) => {
     res.send(`

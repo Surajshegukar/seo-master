@@ -5,7 +5,7 @@ import axios, {
 import 'dotenv/config';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "http://localhost:3000/api2",
   withCredentials: true,
 });
 

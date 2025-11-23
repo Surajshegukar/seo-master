@@ -38,7 +38,7 @@ export function SignUpForm() {
     }
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/auth/register`, {
+      const response = await fetch(`${process.env.EXPRESS_BACKEND_URL || 'http://localhost:3000/api2'}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

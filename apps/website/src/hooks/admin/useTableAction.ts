@@ -43,7 +43,7 @@ export const useTableActions = (tableName: string) => {
   };
 
   const editItem = (id: number, path: string) => {
-    router.push(`${path}/${id}`);
+    router.push(`${process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3000/admin'}/${path}/${id}`);
   };
 
   const deleteItemAction = async (id: number) => {

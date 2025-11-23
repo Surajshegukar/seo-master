@@ -10,7 +10,7 @@ import { useTableActions } from "@/src/hooks/admin/useTableAction";
 
 const CategoryTable: React.FC = () => {
   const [filteredUrl, setFilteredUrl] = useState(
-    "/api/category/ajax/category-list"
+    "/category/ajax/category-list"
   );
 
   const { toggleStatus, editItem, deleteItemAction, refresh } =
@@ -18,7 +18,7 @@ const CategoryTable: React.FC = () => {
     
 
   useEffect(() => {
-    setFilteredUrl("/api/category/ajax/category-list");
+    setFilteredUrl("/category/ajax/category-list");
   }, []);
 
   const columns: TableColumn<DepartmentRow>[] = [

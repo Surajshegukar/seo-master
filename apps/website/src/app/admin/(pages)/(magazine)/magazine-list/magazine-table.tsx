@@ -11,7 +11,7 @@ import { useTableActions } from "@/src/hooks/admin/useTableAction";
 
 const MagazineTable: React.FC = () => {
   const [filteredUrl, setFilteredUrl] = useState(
-    "/api/Magazine/ajax/magazine-list"
+    "/Magazine/ajax/magazine-list"
   );
 
   const { toggleStatus, editItem, deleteItemAction, refresh } =
@@ -19,7 +19,7 @@ const MagazineTable: React.FC = () => {
     
 
   useEffect(() => {
-    setFilteredUrl("/api/magazine/ajax/magazine-list");
+    setFilteredUrl("/magazine/ajax/magazine-list");
   }, []);
 
   const columns: TableColumn<MagazineRow>[] = [

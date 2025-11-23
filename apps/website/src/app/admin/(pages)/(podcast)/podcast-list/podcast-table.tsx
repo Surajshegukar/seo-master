@@ -11,7 +11,7 @@ import { useTableActions } from "@/src/hooks/admin/useTableAction";
 
 const PodcastTable: React.FC = () => {
   const [filteredUrl, setFilteredUrl] = useState(
-    "/api/Podcast/ajax/podcast-list"
+    "/Podcast/ajax/podcast-list"
   );
 
   const { toggleStatus, editItem, deleteItemAction, refresh } =
@@ -19,7 +19,7 @@ const PodcastTable: React.FC = () => {
     
 
   useEffect(() => {
-    setFilteredUrl("/api/podcast/ajax/podcast-list");
+    setFilteredUrl("/podcast/ajax/podcast-list");
   }, []);
 
   const columns: TableColumn<PodcastRow>[] = [
