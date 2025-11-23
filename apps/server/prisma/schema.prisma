@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("LOCAL_DB")
+}
+
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // For credentials auth
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Department {
+  id               Int          @id @default(autoincrement())
+  department_name  String       @db.VarChar(50)
+  status           Int          @default(1)
+  is_deleted       Int          @default(0)
+  created_on       DateTime     @default(now())
+  updated_on       DateTime     @updatedAt
+}
+
+model Category {
+  id               Int          @id @default(autoincrement())
+  category_name  String       @db.VarChar(50)
+  status           Int          @default(1)
+  is_deleted       Int          @default(0)
+
+  created_on       DateTime     @default(now())
+  updated_on       DateTime     @updatedAt
+  Magazine Magazine[]
+}
+
+
+model Auther {
+  id                Int       @id @default(autoincrement())
+  full_name         String    @db.VarChar(100)
+  image             String?   
+  job             String?   
+  city             String? 
+  short_description String?   @db.Text
+  description       String?   @db.Text
+  email             String   
+  password          String
+  status            Int       @default(1)      // 1 = ACTIVE, 0 = INACTIVE
+  is_deleted        Int       @default(0)      // 0 = NOT_DELETED, 1 = DELETED
+  created_on        DateTime  @default(now())
+  updated_on        DateTime  @updatedAt
+  Magazine Magazine[]
+}
+
+model Magazine {
+  id               Int      @id @default(autoincrement())
+  magazine_name    String
+  category_id       Int?
+ category      Category? @relation(fields: [category_id], references: [id])
+  publish_date     DateTime?
+  auther_id      Int?
+  auther         Auther? @relation(fields: [auther_id], references: [id])
+  short_description String? @db.Text  
+  description String? @db.Text  
+  duration         String?
+  image            String?
+  status          Int          @default(1)     // 1 = ACTIVE, 0 = INACTIVE
+  is_deleted      Int          @default(0)     // 0 = NOT_DELETED, 1 = DELETED
+  created_on      DateTime     @default(now())
+  updated_on      DateTime     @updatedAt
+}
+
+
+model Podcast {
+  id                        Int      @id @default(autoincrement())
+  podcast_name    String
+  publish_date       DateTime?
+  duration              String?
+  image                  String?
+  description          String? @db.Text  
+  status                   Int          @default(1)     // 1 = ACTIVE, 0 = INACTIVE
+  is_deleted            Int          @default(0)     // 0 = NOT_DELETED, 1 = DELETED
+  created_on          DateTime     @default(now())
+  updated_on        DateTime     @updatedAt
+}
