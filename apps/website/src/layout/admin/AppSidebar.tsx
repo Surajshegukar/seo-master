@@ -4,17 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "@/src/context/admin/SidebarContext";
-import {
-
-  BoxCubeIcon,
-  ChevronDownIcon,
-  GridIcon,
-  HorizontaLDots,
-  ListIcon,
-  PlugInIcon,
-
-} from "@/src/icons/admin/index";
-import { ChevronDownCircleIcon, ListCheckIcon, PieChart, PieChartIcon } from "lucide-react";
+import { ChevronDown, ChevronDownCircleIcon, ContactRound, LayoutDashboard, ListCheckIcon, Mic, Newspaper, PieChart, PieChartIcon, Settings, UserRound } from "lucide-react";
 import { AiFillDashboard } from "react-icons/ai";
  
 
@@ -27,33 +17,33 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: "",
+    icon: <LayoutDashboard />,
     name: "Dashboard",
     path: "/admin/",
   },
     {
     name: "Category",
-    icon:<ListCheckIcon />,
+    icon:<Settings />,
     subItems: [{ name: "Add Category", path: "/admin/add-category", pro: false },{ name: "Category List", path: "/admin/category-list", pro: false }],
   },
       {
     name: "Magazine",
-    icon: <ListCheckIcon />,
+    icon: <Newspaper />,
     subItems: [{ name: "Add Magazine", path: "/admin/add-magazine", pro: false },{ name: "Magazine List", path: "/admin/magazine-list", pro: false }],
   },
      {
     name: "Podcast",
-    icon: <ListCheckIcon />,
+    icon: <Mic />,
     subItems: [{ name: "Add Podcast", path: "/admin/add-podcast", pro: false },{ name: "Podcast List", path: "/admin/podcast-list", pro: false }],
   },
     {
     name: "Auther",
-    icon: <ListIcon />,
+    icon: <ContactRound />,
     subItems: [{ name: "Add Auther", path: "/admin/add-auther", pro: false },{ name: "Auther List", path: "/admin/auther-list", pro: false }],
   },
     {
     name: "Users",
-    icon: <ListIcon />,
+    icon: <UserRound />,
     subItems: [{ name: "Users List", path: "/admin/users", pro: false }],
   },
 
@@ -101,13 +91,13 @@ const AppSidebar: React.FC = () => {
                     : "menu-item-icon-inactive"
                 }`}
               >
-                {/* {nav.icon} */}
+                {nav.icon}
               </span>
               {(isExpanded || isHovered || isMobileOpen) && (
                 <span className={`menu-item-text`}>{nav.name}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
-                <ChevronDownCircleIcon
+              <ChevronDown
                   className={`ml-auto w-5 h-5 transition-transform duration-200  ${
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
@@ -289,14 +279,14 @@ const AppSidebar: React.FC = () => {
             <>
               <Image
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src={`./next.svg`}
                 alt="Logo"
                 width={150}
                 height={40}
               />
               <Image
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src={`./next.svg`}
                 alt="Logo"
                 width={150}
                 height={40}
