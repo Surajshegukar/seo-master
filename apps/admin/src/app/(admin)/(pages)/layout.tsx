@@ -32,7 +32,7 @@ export default function PagesLayout({
         {/* Header */}
         <AppHeader />
         {/* Page Content */}
-        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">{children}</div>
+        <div className="p-4 mx-auto dark:bg-gray-900 max-w-(--breakpoint-2xl) md:p-6">{children}</div>
       </div>
     </div>
   );

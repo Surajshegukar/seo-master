@@ -33,7 +33,7 @@ if (!dev) {
     server.use("/api2", express.json());
     server.use("/api2", express.urlencoded({ extended: true }));
     server.use("/api2", cookieParser());
-    app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+    server.use("/uploads", express.static(path.join(__dirname, "uploads")));
     server.use("/api2", 
       cors({
         origin: [process.env.NEXT_PUBLIC_APP_URL],

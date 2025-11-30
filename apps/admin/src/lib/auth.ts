@@ -17,7 +17,7 @@ export async function requireAuth() {
 export async function requireAdmin() {
   const session = await auth();
   if (!session?.user || session.user.role !== "ADMIN") {
-    redirect("/auth/signin?callbackUrl=/admin");
+    redirect("/auth/signin");
   }
   return session.user;
 }

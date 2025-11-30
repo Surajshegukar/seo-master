@@ -1,7 +1,4 @@
 
-import { Outfit } from 'next/font/google';
-// import '@/src/app/admin/globals.css';
-
 import { SidebarProvider } from '@/src/context/admin/SidebarContext';
 import { ThemeProvider } from '@/src/context/admin/ThemeContext';
 import { Toaster } from 'react-hot-toast';
