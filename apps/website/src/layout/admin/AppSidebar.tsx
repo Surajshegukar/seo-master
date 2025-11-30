@@ -286,7 +286,7 @@ const AppSidebar: React.FC = () => {
               />
               <Image
                 className="hidden dark:block"
-                src={`./next.svg`}
+                src={`/next.svg`}
                 alt="Logo"
                 width={150}
                 height={40}

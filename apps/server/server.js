@@ -68,7 +68,7 @@ if (!dev) {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: [process.env.NEXT_PUBLIC_APP_URL],
+      origin: process.env.NEXT_PUBLIC_APP_URL,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       credentials: true,
     })
