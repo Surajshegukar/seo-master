@@ -28,7 +28,7 @@ const prisma = require("../../config/prisma");
 
 const addMagazine = async (req, res) => {
   try {
-    const { magazine_name, category_id, publish_date, auther_id, short_description, duration, description } = req.body;
+    const { magazine_name, category_id, publish_date, short_description, duration, description } = req.body;
     const image = req.file; // assuming you are using multer for file upload
 
     const existing = await prisma.magazine.findFirst({
@@ -48,7 +48,6 @@ const addMagazine = async (req, res) => {
         magazine_name,
         category_id : Number(category_id),
         publish_date: publish_date ? new Date(publish_date) : null,
-        auther_id:Number(auther_id),
         short_description,
         duration: duration,
         image: image ? image.filename : null,
@@ -132,7 +131,6 @@ const updateMagazine = async (req, res) => {
         magazine_name,
         category_id:Number(category_id),
         publish_date: publish_date ? new Date(publish_date) : null,
-        auther_id,
         short_description,
         description,
         duration: duration  ,
@@ -197,7 +195,7 @@ const getAjaxMagazines = async (req, res) => {
   const filteredCategory = req.query?.category_id || "all";
 
   // Columns for sorting (add or adjust fields as needed)
-  const columns = ["magazine_name", "category_id", "auther_id", "publish_date", "duration"];
+  const columns = ["magazine_name", "category_id", "publish_date", "duration"];
   const colIndex = order[0]?.column;
   const dir = order[0]?.dir === "asc" ? "asc" : "desc";
   const sortField = colIndex !== undefined ? columns[colIndex] || "id" : "id";
@@ -238,7 +236,6 @@ const getAjaxMagazines = async (req, res) => {
       row.status,
       row.magazine_name,
       row.category_id,
-      row.auther_id,
       row.publish_date ? row.publish_date.toISOString().split("T")[0] : "",
       row.duration,
       row.image,

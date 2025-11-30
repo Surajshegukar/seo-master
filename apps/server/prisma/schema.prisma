@@ -84,31 +84,12 @@ model Category {
 }
 
 
-model Auther {
-  id                Int       @id @default(autoincrement())
-  full_name         String    @db.VarChar(100)
-  image             String?   
-  job             String?   
-  city             String? 
-  short_description String?   @db.Text
-  description       String?   @db.Text
-  email             String   
-  password          String
-  status            Int       @default(1)      // 1 = ACTIVE, 0 = INACTIVE
-  is_deleted        Int       @default(0)      // 0 = NOT_DELETED, 1 = DELETED
-  created_on        DateTime  @default(now())
-  updated_on        DateTime  @updatedAt
-  Magazine Magazine[]
-}
-
 model Magazine {
   id               Int      @id @default(autoincrement())
   magazine_name    String
   category_id       Int?
  category      Category? @relation(fields: [category_id], references: [id])
   publish_date     DateTime?
-  auther_id      Int?
-  auther         Auther? @relation(fields: [auther_id], references: [id])
   short_description String? @db.Text  
   description String? @db.Text  
   duration         String?

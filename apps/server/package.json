@@ -15,6 +15,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.10",
+    "baseline-browser-mapping": "^2.8.32",
     "jest": "^30.2.0",
     "prisma": "^6.19.0",
     "supertest": "^7.1.4"
@@ -27,12 +28,14 @@
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "express-validator": "^7.3.0",
     "jsonwebtoken": "^9.0.2",
     "ms": "^2.1.3",
     "multer": "^2.0.2",
-    "next": "^16.0.3"
+    "next": "^16.0.3",
+    "uuid": "^13.0.0"
   }
 }

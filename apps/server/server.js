@@ -9,7 +9,7 @@ dotenv.config({
 });
 
 const dev = process.env.NODE_ENV !== "production";
-const nextAppPath = path.join(__dirname, "../website");
+const nextAppPath = path.join(__dirname, "../admin");
 const routes = require("./config/routes.js");
 
 
@@ -33,6 +33,7 @@ if (!dev) {
     server.use("/api2", express.json());
     server.use("/api2", express.urlencoded({ extended: true }));
     server.use("/api2", cookieParser());
+    app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     server.use("/api2", 
       cors({
         origin: [process.env.NEXT_PUBLIC_APP_URL],
@@ -66,6 +67,7 @@ if (!dev) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
+  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
   app.use(
     cors({
       origin: process.env.NEXT_PUBLIC_APP_URL,
@@ -73,6 +75,8 @@ if (!dev) {
       credentials: true,
     })
   );
+  // serve static files from the 'public' directory
+
 
   // Prisma middleware
   app.use((req, res, next) => {

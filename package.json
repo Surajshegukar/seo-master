@@ -4,13 +4,14 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "dev:server" : "turbo run dev --filter=server",
-    "dev:website" : "turbo run dev --filter=website",
+    "dev:server": "turbo run dev --filter=server",
+    "dev:admin": "turbo run dev --filter=admin",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "baseline-browser-mapping": "^2.8.32",
     "prettier": "^3.6.2",
     "turbo": "^2.6.0",
     "typescript": "5.9.2"
@@ -28,10 +29,12 @@
     "@fullcalendar/react": "^6.1.19",
     "@fullcalendar/timegrid": "^6.1.19",
     "@hookform/resolvers": "^5.2.2",
+    "@prisma/client": "^6.19.0",
     "@react-jvectormap/world": "^1.1.2",
     "axios": "^1.13.2",
     "flatpickr": "^4.6.13",
     "jodit-react": "^5.2.38",
+    "prisma": "^6.19.0",
     "react-apexcharts": "^1.8.0",
     "react-data-table-component": "^7.7.0",
     "react-hook-form": "^7.66.0",
@@ -39,8 +42,6 @@
     "react-icons": "^5.5.0",
     "react-select": "^5.10.2",
     "sweetalert2": "^11.26.3",
-    "zod": "^4.1.12",
-    "prisma": "^6.19.0",
-     "@prisma/client": "^6.19.0"
+    "zod": "^4.1.12"
   }
 }

@@ -1,13 +1,18 @@
-// utils/generateFilename.js
+// utils/generate_file_name.js
 const path = require("path");
+const crypto = require("crypto");
 
-const generateFilename = async (originalName, userId = "anonymous") => {
-  const { v4: uuidv4 } = await import("uuid");
-
+const generateFilename = (originalName, userId = "anonymous") => {
   const ext = path.extname(originalName);
-  const base = path.basename(originalName, ext).replace(/\s+/g, "-").toLowerCase();
+  const base = path
+    .basename(originalName, ext)
+    .replace(/\s+/g, "-")
+    .toLowerCase();
+
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-  const uuid = uuidv4();
+
+  // Replace uuid with crypto random string
+  const uuid = crypto.randomUUID();
 
   return `${userId}-${base}-${timestamp}-${uuid}${ext}`;
 };
