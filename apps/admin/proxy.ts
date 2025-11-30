@@ -7,7 +7,7 @@ export default auth((req) => {
   const userRole = req.auth?.user?.role;
 
   // Define protected routes
-  const isAdminRoute = nextUrl.pathname.startsWith("/admin");
+  const isAdminRoute = nextUrl.pathname.startsWith("/");
   // const isWebRoute = nextUrl.pathname.startsWith("/");
   const isAuthRoute = nextUrl.pathname.startsWith("/auth");
 

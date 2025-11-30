@@ -117,7 +117,7 @@ export default function AddPodcastForm() {
 
       });
       setTimeout(() => {
-        navigate.push("/admin/podcast-list");
+        navigate.push("/podcast-list");
       }, 2000);
     } catch (err: any) {
       setMessage({ type: "error", text: err.message });

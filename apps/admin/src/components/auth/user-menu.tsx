@@ -34,7 +34,7 @@ export function UserMenu({ user }: UserMenuProps) {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent className="bg-white" align="end">
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium">{user.name}</p>
@@ -45,16 +45,16 @@ export function UserMenu({ user }: UserMenuProps) {
         <DropdownMenuSeparator />
         {user.role === "ADMIN" && (
           <DropdownMenuItem asChild>
-            <a href="/admin">Admin Panel</a>
+            <a href="/">Dashboard</a>
           </DropdownMenuItem>
         )}
         <DropdownMenuItem asChild>
-          <a href="/profile">Profile</a>
+          <a href="#">Profile</a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild></DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <a href="/settings">Settings</a>
+          <a href="/#">Settings</a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

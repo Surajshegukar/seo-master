@@ -84,7 +84,7 @@ useEffect(() => {
       reset({
         category_name: "",
       });
-      navigate.push("/admin/category-list");
+      navigate.push("/category-list");
     } catch (err: any) {
       setMessage({ type: "error", text: err.message });
     }

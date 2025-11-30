@@ -7,7 +7,7 @@ export const authConfig: NextAuthConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnAdminPanel = nextUrl.pathname.startsWith("/admin");
+      const isOnAdminPanel = nextUrl.pathname.startsWith("/");
       const isOnAuthPage = nextUrl.pathname.startsWith("/auth");
 
       if (isOnAdminPanel) {
@@ -17,7 +17,7 @@ export const authConfig: NextAuthConfig = {
 
       if (isOnAuthPage) {
         if (isLoggedIn) {
-          return Response.redirect(new URL("/profile", nextUrl));
+          return Response.redirect(new URL("/", nextUrl));
         }
         return true;
       }
